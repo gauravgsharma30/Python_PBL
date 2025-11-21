@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎧 Music Player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Music Player</h1>
+        <a href="{{ url_for('home') }}" class="btn">🏠 Back to Home</a>
+
+        {% if songs %}
+        <ul>
+            {% for song in songs %}
+            <li>
+                {{ song }}
+                <audio controls>
+                    <source src="{{ url_for('static', filename='songs/' + song) }}" type="audio/mpeg">
+                </audio>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No songs found in static/songs folder 🎶</p>
+        {% endif %}
+    </div>
+</body>
+</html>
